@@ -21,6 +21,7 @@ struct hash_table_entry {
 
 struct hash_table_v1 {
 	struct hash_table_entry entries[HASH_TABLE_CAPACITY];
+	pthread_mutex_t lock;
 };
 
 struct hash_table_v1 *hash_table_v1_create()
