@@ -114,6 +114,8 @@ uint32_t hash_table_v1_get_value(struct hash_table_v1 *hash_table,
 
 void hash_table_v1_destroy(struct hash_table_v1 *hash_table)
 {
+	uint32_t err = 0;
+
 	for (size_t i = 0; i < HASH_TABLE_CAPACITY; ++i) {
 		struct hash_table_entry *entry = &hash_table->entries[i];
 		struct list_head *list_head = &entry->list_head;
@@ -123,6 +125,10 @@ void hash_table_v1_destroy(struct hash_table_v1 *hash_table)
 			SLIST_REMOVE_HEAD(list_head, pointers);
 			free(list_entry);
 		}
+	}
+	err = pthread_mutex_destroy(&hash_table->lock);
+	if(err!=0){
+		exit(err);
 	}
 	free(hash_table);
 }
