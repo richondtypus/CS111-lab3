@@ -26,7 +26,12 @@ struct hash_table_v1 {
 
 struct hash_table_v1 *hash_table_v1_create()
 {
+	uint32_t err = 0;
 	struct hash_table_v1 *hash_table = calloc(1, sizeof(struct hash_table_v1));
+	err = pthread_mutex_init(&hash_table->lock, NULL);
+	if(err != 0){
+		exit(err);
+	}
 	assert(hash_table != NULL);
 	for (size_t i = 0; i < HASH_TABLE_CAPACITY; ++i) {
 		struct hash_table_entry *entry = &hash_table->entries[i];
