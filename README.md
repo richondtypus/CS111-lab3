@@ -2,8 +2,9 @@
 TODO introduction
 
 ## Building
+To build run,
 ```shell
-TODO
+make
 ```
 
 ## Running
