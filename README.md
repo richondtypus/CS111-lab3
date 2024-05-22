@@ -32,7 +32,7 @@ Hash table base: 2,273,317 usec
 Hash table v1: 2,967,302 usec
   - 0 missing
 ```
-Clearly version 1 is a little slower/faster than the base version. As the number of threads increases, the numbe of threads competing for the same lock also increases. This drastically inhibits performance as we now have more threads waiting for the same lock. For adding one lock however, this solution is correct because even though it is inefficient with multiple threads, it ensures that only one thread at once can update the hash-table.
+Clearly version 1 is a little slower than the base version. As the number of threads increases, the numbe of threads competing for the same lock also increases. This drastically inhibits performance as we now have more threads waiting for the same lock. For adding one lock however, this solution is correct because even though it is inefficient with multiple threads, it ensures that only one thread at once can update the hash-table.
 
 ## Second Implementation
 In the `hash_table_v2_add_entry` function, I added a lock to each bucket. The idea is to allow multiple threads to work concurrently better. By only locking one bucket at a time, the other threads do not have to wait for a thread already holding the lock to give it up. Instead they can move to a different bucket and update that concurrently.
