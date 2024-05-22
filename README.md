@@ -1,14 +1,23 @@
 # Hash Hash Hash
-TODO introduction
+We implement a serial hash table implementation, along with two concurrent hash table implementations that use different locking strategies. The first version contains a single mutex lock whereas the second version contains a lock for every entry in the hash table.
 
 ## Building
+To build run,
 ```shell
-TODO
+make
 ```
 
 ## Running
+When we run the following program we yield the following results,
 ```shell
-TODO how to run and results
+./hash-table-tester -t 8 -s 50000
+Generation: 183,861 usec
+Hash table base: 2,273,317 usec
+  - 0 missing
+Hash table v1: 2,967,302 usec
+  - 0 missing
+Hash table v2: 1,664,805 usec
+  - 0 missing
 ```
 
 ## First Implementation
