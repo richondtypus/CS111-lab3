@@ -40,6 +40,7 @@ TODO how to run and results
 TODO more results, speedup measurement, and analysis on v2
 
 ## Cleaning up
+To clean up run,
 ```shell
-TODO how to clean
+make clean
 ```
